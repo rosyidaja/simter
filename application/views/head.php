@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="<?php echo base_url();?>assets/css/colorpicker.css" />
         <!--fonts-->
 
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+        
 
         <!--ace styles-->
 

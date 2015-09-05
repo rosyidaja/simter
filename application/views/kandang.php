@@ -26,13 +26,40 @@
 				</div>
 				<div class="page-content">
 
+				<div id="inputan" style="display:none;">
+					<div class="row-fluid">
+						<?php $this->load->view('inputkandang'); ?>
+					</div>
+				</div>
+				<div id="editan">
+					<div class="modal-c hide" tabindex="-1">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal">&times;</button>
+														<h4 class="blue bigger">Edit Data Master</h4>
+													</div>
+										<div class="modal-body overflow-visible" style="width:100%;">
 
+											</div>
+												<div class="modal-footer">
+														<button class="btn btn-small btn-primary" id="update">
+															<i class="icon-ok"></i>
+															Update
+														</button>
+														<button class="btn btn-small" data-dismiss="modal">
+															<i class="icon-remove"></i>
+															Cancel
+														</button>
+													</div>
+							</div><!--PAGE CONTENT ENDS-->
+				</div>
 							<div class="row-fluid">
-								<h3 class="header smaller lighter blue">jQuery dataTables</h3>
 								<div class="table-header">
-									Results for "Latest Registered Domains"
+									Data Master Kandang
+									<button id="tambah" class="btn btn-small btn-primary" style="border:1px solid white">
+									<i class="icon-plus"></i>
+									Tambah
+									</button>
 								</div>
-
 								<table id="sample-table-2" class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
@@ -55,11 +82,13 @@
 									</thead>
 
 									<tbody>
-										
-
-										<?php foreach($kandang as $row){ ?>
-											<tr>
-												<td>1</td>
+										<?php $i=0; ?>
+										<?php foreach($kandang as $row){ 
+											$i++;
+											?>
+											<!-- tabele  -->
+											<tr class="record">
+												<td><?php echo $i; ?></td>
 												<td>
 													<?php echo $row->nama_kandang; ?>
 												</td>
@@ -67,15 +96,15 @@
 													<?php echo $row->kode_warna; ?>
 												</td>
 												<td>
-													<?php if(  $row->status == 'k' ) { ?>
-													Kosong
-											<?php}else{?>
-												Tersedia
-											<?php }?>
+													<?php if($row->status == 'k'){
+														echo "Kosong";
+													}else{
+														echo "Terpakai";
+													}  ?> 
 												</td>
 												<td class="td-actions">
 												<div class="hidden-phone visible-desktop action-buttons">
-													<a class="green" href="#">
+													<a class="green editan" href="#" id="<?php echo $row->id_kandang; ?>" role="button" data-toggle="modal">
 														<i class="icon-pencil bigger-130"></i>
 													</a>
 
@@ -92,7 +121,7 @@
 
 														<ul class="dropdown-menu dropdown-icon-only dropdown-yellow pull-right dropdown-caret dropdown-close">
 															<li>
-																<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+																<a href="#modal-form<?php echo $row->id_kandang; ?>" class="tooltip-success editan"  data-rel="tooltip" title="Edit">
 																	<span class="green">
 																		<i class="icon-edit bigger-120"></i>
 																	</span>
@@ -112,53 +141,12 @@
 											</td>
 											</tr>
 										<?php }?>
-
 									</tbody>
 								</table>
 							</div>
 						</div><!--/.span-->
 					</div><!--/.row-fluid-->
 				</div><!--/.page-content-->
-
-				<div class="ace-settings-container" id="ace-settings-container">
-					<div class="btn btn-app btn-mini btn-warning ace-settings-btn" id="ace-settings-btn">
-						<i class="icon-cog bigger-150"></i>
-					</div>
-
-					<div class="ace-settings-box" id="ace-settings-box">
-						<div>
-							<div class="pull-left">
-								<select id="skin-colorpicker" class="hide">
-									<option data-class="default" value="#438EB9" />#438EB9
-									<option data-class="skin-1" value="#222A2D" />#222A2D
-									<option data-class="skin-2" value="#C6487E" />#C6487E
-									<option data-class="skin-3" value="#D0D0D0" />#D0D0D0
-								</select>
-							</div>
-							<span>&nbsp; Choose Skin</span>
-						</div>
-
-						<div>
-							<input type="checkbox" class="ace-checkbox-2" id="ace-settings-header" />
-							<label class="lbl" for="ace-settings-header"> Fixed Header</label>
-						</div>
-
-						<div>
-							<input type="checkbox" class="ace-checkbox-2" id="ace-settings-sidebar" />
-							<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
-						</div>
-
-						<div>
-							<input type="checkbox" class="ace-checkbox-2" id="ace-settings-breadcrumbs" />
-							<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
-						</div>
-
-						<div>
-							<input type="checkbox" class="ace-checkbox-2" id="ace-settings-rtl" />
-							<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
-						</div>
-					</div>
-				</div><!--/#ace-settings-container-->
 			</div><!--/.main-content-->
 		</div><!--/.main-container-->
 
@@ -167,12 +155,6 @@
 		</a>
 
 		<!--basic scripts-->
-
-		<!--[if !IE]>-->
-
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-		<!--<![endif]-->
 
 		<!--[if IE]>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -201,7 +183,9 @@
 
 		<script src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
 		<script src="<?php echo base_url();?>assets/js/jquery.dataTables.bootstrap.js"></script>
-
+		<script src="<?php echo base_url();?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="<?php echo base_url();?>assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="<?php echo base_url();?>assets/js/bootstrap-tag.min.js"></script>
 		<!--ace scripts-->
 
 		<script src="<?php echo base_url();?>assets/js/ace-elements.min.js"></script>
@@ -210,15 +194,100 @@
 		<!--inline scripts related to this page-->
 
 		<script type="text/javascript">
-			$(function() {
+		$(document).ready(function() {
+
+			$(".delbutton").click(function(){
+ 
+				 //Save the link in a variable called element
+				 var element = $(this);
+				 
+				 //Find the id of the link that was clicked
+				 var del_id = element.attr("id");
+				 
+				 //Built a url to send
+				 var info = 'id=' + del_id;
+				 if(confirm("Anda yakin akan menghapus?"))
+				 {
+				 $.ajax({
+				 type: "POST",
+				 url : "<?php echo site_url('kandang/delete')?>",
+				 data: info,
+				 success: function(){
+				 	$(this).parents(".record").animate({ opacity: "hide" }, "slow");
+					window.location = '<?php echo site_url("kandang"); ?>';
+				 }
+				 });
+				 
+				 
+				 
+				 }
+				 
+				 return false;
+				 
+				});
+			$(".editan").click(function(event) {
+				 //Save the link in a variable called element
+				 var element = $(this);
+				 
+				 //Find the id of the link that was clicked
+				 var del_id = element.attr("id");
+				 $(".modal-c").modal('show');
+				 //Built a url to send
+				 var info = 'id=' + del_id;
+				 $.ajax({
+				 	type:'POST',
+				 	url:"<?php echo site_url('kandang/get')?>",
+				 	data:info,
+				 	success:function(data){
+				 		$(".modal-body").html(data);
+				 	}
+				 });
+			});
+			$('#update').click(function(event) {
+				$.ajax({
+					type:'POST',
+					url:'<?php echo base_url()."index.php/kandang/edit" ?>',
+					data:$("#form-edit-kandang").serialize(),
+					success:function(){
+						$(".modal-c").modal('hide');
+						alert("Berhasil Update");
+						window.location = '<?php echo site_url("kandang"); ?>';
+					}
+				});
+			});
+			$("#tambah").click(function(event) {
+				$("#inputan").show("slow");
+			});
+
+			$('#tutup').click(function(event) {
+				$("#inputan").hide("slow");
+			});
+
+			$("#tes").click(function(){
+					$("#inputan").hide("slow");
+					$.ajax({
+					type:'POST',
+					url:'<?php echo base_url()."index.php/kandang/tambahData" ?>',
+					data:$("#form-tambah-kandang").serialize(),
+					success:function(){
+					alert('Berhasil input');
+					window.location = '<?php echo site_url("kandang"); ?>';
+					},error:function(data) {
+						$('#sample-table-2').alert("error");
+					}
+					});
+				});
+
+			});
+			
+			
+				$(function() {
 				var oTable1 = $('#sample-table-2').dataTable( {
 				"aoColumns": [
 			      { "bSortable": false },
-			     null,null, null,
+			      null, null,null, 
 				  { "bSortable": false }
 				] } );
-				
-				
 			
 				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
 				function tooltip_placement(context, source) {
@@ -233,6 +302,13 @@
 					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
 					return 'left';
 				}
+				$('#modal-form').on('show', function () {
+					$(this).find('.chzn-container').each(function(){
+						$(this).find('a:first-child').css('width' , '150px');
+						$(this).find('.chzn-drop').css('width' , '160px');
+						$(this).find('.chzn-search input').css('width' , '150px');
+					});
+				})
 			})
 		</script>
 	</body>
