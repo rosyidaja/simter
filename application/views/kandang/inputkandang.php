@@ -26,7 +26,7 @@
 							<div class="control-grup">
 								<label class="control-label"  for="form-field-1">Status Kandang :&nbsp;</label>
 								<label style="float:left;">
-									<input name="status" value="k" type="radio" />
+									<input name="status" value="k" checked="TRUE" type="radio" />
 									<span class="lbl">Kosong &nbsp;</span>
 								</label>
 								<label>

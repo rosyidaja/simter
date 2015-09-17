@@ -18,6 +18,8 @@
           <link rel="stylesheet" href="<?php echo base_url();?>assets/css/font-awesome-ie7.min.css" />
         <![endif]-->
 
+        <!-- Tree Menu -->
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/treemenu/css/tree.css" media="all" />
         <!--page specific plugin styles-->
         <link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery-ui-1.10.3.custom.min.css" />
         <link rel="stylesheet" href="<?php echo base_url();?>assets/css/chosen.css" />
@@ -148,6 +150,12 @@
 
                         <ul class="submenu">
                             <li>
+                                <a href="<?php echo site_url('burung');?>">
+                                    <i class="icon-double-angle-right"></i>
+                                    Data Burung
+                                </a>
+                            </li>
+                            <li>
                                 <a href="<?php echo site_url('kandang');?>">
                                     <i class="icon-double-angle-right"></i>
                                     Kandang
@@ -193,9 +201,9 @@
                             </li>
 
                             <li>
-                                <a href="treeview.html">
+                                <a href="<?php echo site_url('c_parent'); ?>">
                                     <i class="icon-double-angle-right"></i>
-                                    Indukan
+                                    Materi Indukan
                                 </a>
                             </li>
                         </ul>

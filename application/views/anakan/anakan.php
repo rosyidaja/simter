@@ -14,51 +14,17 @@
 						</li>
 						<li class="active"><?php echo ucfirst($this->uri->segment(1));?></li>
 					</ul><!--.breadcrumb-->
-
-					<div class="nav-search" id="nav-search">
-						<form class="form-search" />
-							<span class="input-icon">
-								<input type="text" placeholder="Search ..." class="input-small nav-search-input" id="nav-search-input" autocomplete="off" />
-								<i class="icon-search nav-search-icon"></i>
-							</span>
-						</form>
-					</div><!--#nav-search-->
 				</div>
-				<div class="page-content">
-
-				<div id="inputan" style="display:none;">
-					<div class="row-fluid">
-						<?php $this->load->view('inputkandang'); ?>
-					</div>
-				</div>
-				<div id="editan">
-					<div class="modal-c hide" tabindex="-1">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal">&times;</button>
-														<h4 class="blue bigger">Edit Data Master</h4>
-													</div>
-										<div class="modal-body overflow-visible" style="width:100%;">
-
-											</div>
-												<div class="modal-footer">
-														<button class="btn btn-small btn-primary" id="update">
-															<i class="icon-ok"></i>
-															Update
-														</button>
-														<button class="btn btn-small" data-dismiss="modal">
-															<i class="icon-remove"></i>
-															Cancel
-														</button>
-													</div>
-							</div><!--PAGE CONTENT ENDS-->
-				</div>
+				<div class="page-content">					
 							<div class="row-fluid">
 								<div class="table-header">
-									Data Master Kandang
-									<button id="tambah" class="btn btn-small btn-primary" style="border:1px solid white">
+									Data Master Anakan
+									<a href="anakan/inputan">
+									<button class="btn btn-small btn-primary" style="border:1px solid white">
 									<i class="icon-plus"></i>
 									Tambah
 									</button>
+									</a>
 								</div>
 								<table id="sample-table-2" class="table table-striped table-bordered table-hover">
 									<thead>
@@ -67,13 +33,22 @@
 												NO
 											</th>
 											<th>
-												Nama Kandang
+												Tanggal Lahir
 											</th>
 											<th>
-												kode Kandang
+												Nomor Ring
 											</th>
 											<th>
-												Status
+												Kode / Kandang
+											</th>
+											<th>
+												Indukan
+											</th>
+											<th>
+												Prah Indukan
+											</th>
+											<th>
+												Keterangan
 											</th>
 											<th>
 												Action
@@ -83,17 +58,25 @@
 
 									<tbody>
 										<?php $i=0; ?>
-										<?php foreach($kandang as $row){ 
+										<?php foreach($anakan as $row){ 
 											$i++;
 											?>
 											<!-- tabele  -->
 											<tr class="record">
 												<td><?php echo $i; ?></td>
 												<td>
-													<?php echo $row->nama_kandang; ?>
+													<?php echo $row->tanggal_lahir; ?>
 												</td>
 												<td>
-													<?php echo $row->kode_warna; ?>
+													<?php echo $row->nomor_ring; ?>
+												</td>
+												<td>
+													<?php echo $row->kode_ring; ?>
+												</td>
+												<td>
+													<?php echo $row->id_indukan; ?>
+												</td>
+												<td>
 												</td>
 												<td>
 													<?php if($row->status == 'k'){
@@ -104,11 +87,11 @@
 												</td>
 												<td class="td-actions">
 												<div class="hidden-phone visible-desktop action-buttons">
-													<a class="green editan" href="#" id="<?php echo $row->id_kandang; ?>" role="button" data-toggle="modal">
+													<a class="green editan" href="anakan/get?id=<?php echo $row->id_anakan; ?>" role="button" data-toggle="modal">
 														<i class="icon-pencil bigger-130"></i>
 													</a>
 
-													<a class="red delbutton" id="<?php echo $row->id_kandang; ?>" href="#">
+													<a class="red delbutton" id="<?php echo $row->id_anakan; ?>" href="#">
 														<i class="icon-trash bigger-130"></i>
 													</a>
 												</div>
@@ -121,7 +104,7 @@
 
 														<ul class="dropdown-menu dropdown-icon-only dropdown-yellow pull-right dropdown-caret dropdown-close">
 															<li>
-																<a href="#modal-form<?php echo $row->id_kandang; ?>" class="tooltip-success editan"  data-rel="tooltip" title="Edit">
+																<a href="anakan/get?id=<?php echo $row->id_anakan; ?>" class="tooltip-success editan"  data-rel="tooltip" title="Edit">
 																	<span class="green">
 																		<i class="icon-edit bigger-120"></i>
 																	</span>
@@ -129,7 +112,7 @@
 															</li>
 
 															<li>
-																<a href="#" class="tooltip-error delbutton" id="<?php echo $row->id_kandang; ?>" data-rel="tooltip" title="Delete">
+																<a href="#" class="tooltip-error delbutton" id="<?php echo $row->id_anakan; ?>" data-rel="tooltip" title="Delete">
 																	<span class="red">
 																		<i class="icon-trash bigger-120"></i>
 																	</span>
@@ -210,73 +193,19 @@
 				 {
 				 $.ajax({
 				 type: "POST",
-				 url : "<?php echo site_url('kandang/delete')?>",
+				 url : "<?php echo site_url('anakan/delete')?>",
 				 data: info,
 				 success: function(){
 				 	$(this).parents(".record").animate({ opacity: "hide" }, "slow");
-					window.location = '<?php echo site_url("kandang"); ?>';
+					window.location = '<?php echo site_url("anakan"); ?>';
 				 }
-				 });
-				 
-				 
-				 
+				 });				 
 				 }
 				 
 				 return false;
 				 
 				});
-			$(".editan").click(function(event) {
-				 //Save the link in a variable called element
-				 var element = $(this);
-				 
-				 //Find the id of the link that was clicked
-				 var del_id = element.attr("id");
-				 $(".modal-c").modal('show');
-				 //Built a url to send
-				 var info = 'id=' + del_id;
-				 $.ajax({
-				 	type:'POST',
-				 	url:"<?php echo site_url('kandang/get')?>",
-				 	data:info,
-				 	success:function(data){
-				 		$(".modal-body").html(data);
-				 	}
-				 });
-			});
-			$('#update').click(function(event) {
-				$.ajax({
-					type:'POST',
-					url:'<?php echo base_url()."index.php/kandang/edit" ?>',
-					data:$("#form-edit-kandang").serialize(),
-					success:function(){
-						$(".modal-c").modal('hide');
-						alert("Berhasil Update");
-						window.location = '<?php echo site_url("kandang"); ?>';
-					}
-				});
-			});
-			$("#tambah").click(function(event) {
-				$("#inputan").show("slow");
-			});
-
-			$('#tutup').click(function(event) {
-				$("#inputan").hide("slow");
-			});
-
-			$("#tes").click(function(){
-					$("#inputan").hide("slow");
-					$.ajax({
-					type:'POST',
-					url:'<?php echo base_url()."index.php/kandang/tambahData" ?>',
-					data:$("#form-tambah-kandang").serialize(),
-					success:function(){
-					alert('Berhasil input');
-					window.location = '<?php echo site_url("kandang"); ?>';
-					},error:function(data) {
-						$('#sample-table-2').alert("error");
-					}
-					});
-				});
+			
 
 			});
 			
@@ -285,7 +214,7 @@
 				var oTable1 = $('#sample-table-2').dataTable( {
 				"aoColumns": [
 			      { "bSortable": false },
-			      null, null,null, 
+			      null, null,null,null,null,null, 
 				  { "bSortable": false }
 				] } );
 			
