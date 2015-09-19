@@ -19,7 +19,7 @@
 							<div class="row-fluid">
 								<div class="table-header">
 									Data Master Indukan
-									<a href="indukan/inputan">
+									<a href="<?php echo site_url('burung/input'); ?>">
 									<button class="btn btn-small btn-primary" style="border:1px solid white">
 									<i class="icon-plus"></i>
 									Tambah
@@ -42,17 +42,64 @@
 												Indukan Betina
 											</th>
 											<th>
-												Keterangan
-											</th>
-											<th>
 												Action
 											</th>
 										</tr>
 									</thead>
 
 									<tbody>
-										<?php $i=0; ?>
-										
+										<?php $i=0;
+										 foreach($burung as $row){ $i++;?>
+											<tr class="record">
+												<td><?php echo $i; ?></td>
+												<td>
+													<?php echo $row->nomor_ring; ?>
+												</td>
+												<td>
+													<?php echo $row->indukan_jantan; ?>
+												</td>
+												<td>
+													<?php echo $row->indukan_betina; ?>
+												</td>
+												<td class="td-actions">
+												<div class="hidden-phone visible-desktop action-buttons">
+													<a class="green editan" href="#" id="<?php echo $row->id_burung; ?>" role="button" data-toggle="modal">
+														<i class="icon-pencil bigger-130"></i>
+													</a>
+
+													<a class="red delbutton" id="<?php echo $row->id_burung; ?>" href="#">
+														<i class="icon-trash bigger-130"></i>
+													</a>
+												</div>
+
+													<div class="hidden-desktop visible-phone">
+														<div class="inline position-relative">
+															<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+																<i class="icon-caret-down icon-only bigger-120"></i>
+															</button>
+
+															<ul class="dropdown-menu dropdown-icon-only dropdown-yellow pull-right dropdown-caret dropdown-close">
+																<li>
+																	<a href="#" id="<?php echo $row->id_burung; ?>" class="tooltip-success editan"  data-rel="tooltip" title="Edit">
+																		<span class="green">
+																			<i class="icon-edit bigger-120"></i>
+																		</span>
+																	</a>
+																</li>
+
+																<li>
+																	<a href="#" class="tooltip-error delbutton" id="<?php echo $row->id_burung; ?>" data-rel="tooltip" title="Delete">
+																		<span class="red">
+																			<i class="icon-trash bigger-120"></i>
+																		</span>
+																	</a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</td>	
+											</tr>
+											<?php }?>
 									</tbody>
 								</table>
 							</div>
@@ -143,7 +190,7 @@
 				var oTable1 = $('#sample-table-2').dataTable( {
 				"aoColumns": [
 			      { "bSortable": false },
-			      null, null,null,null, 
+			      null, null,null,
 				  { "bSortable": false }
 				] } );
 			

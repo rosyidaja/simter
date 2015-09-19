@@ -133,7 +133,7 @@
                             </li>
 
                             <li>
-                                <a href="treeview.html">
+                                <a href="<?php echo site_url('login/logout'); ?>">
                                     <i class="icon-double-angle-right"></i>
                                     Logout
                                 </a>
