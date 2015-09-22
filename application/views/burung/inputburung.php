@@ -62,6 +62,17 @@
 										<input type="text" name="ring_betina" id="nama_kandang" placeholder="Ring Betina" maxlength="50" required/>
 									</div>
 								</div>
+								<div class="control-group">
+													<label class="control-label" style="clear:both;">Jenis Kelamin</label>
+													<label style="float:left;margin-right:50px;">
+													<input type="radio" checked value="j" name="jk">
+													<span class="lbl">Jantan</span>
+													</label>
+													<label >
+													<input type="radio" value="b" name="jk">
+													<span class="lbl">betina</span>
+													</label>
+												</div>
 								<div>
 									&nbsp;
 								</div>

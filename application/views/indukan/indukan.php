@@ -29,7 +29,7 @@
 								<table id="sample-table-2" class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
-											<th class="center">
+											<th class="center" style="display:none;">
 												NO
 											</th>
 											<th>
@@ -40,6 +40,9 @@
 											</th>
 											<th>
 												Ring Betina
+											</th>
+											<th>
+												Prah Indukan
 											</th>
 											<th>
 												Keterangan
@@ -57,7 +60,7 @@
 											?>
 											<!-- tabele  -->
 											<tr class="record">
-												<td><?php echo $i; ?></td>
+												<td style="display:none;"><?php echo $i; ?></td>
 												<td>
 													<?php echo $row->id_kandang; ?>
 												</td>
@@ -66,6 +69,12 @@
 												</td>
 												<td>
 													<?php echo $row->ring_betina; ?>
+												</td>
+												<td style="width:15%;">
+													<span  data-rel="popover" data-trigger="hover" data-placement="left" 
+													data-content="<?php echo $row->prah_jantan; ?>" title="Prah Indukan Jantan">Prah Jantan</span> X 
+													<span  data-rel="popover" data-trigger="hover" data-placement="left" 
+													data-content="<?php echo $row->prah_betina; ?>" title="Prah Indukan Betina">Prah Betina</span>
 												</td>
 												<td>
 													<?php if($row->status == 'k'){
@@ -198,12 +207,12 @@
 
 			});
 			
-			
+				$('[data-rel=popover]').popover({container:'body'});
 				$(function() {
 				var oTable1 = $('#sample-table-2').dataTable( {
 				"aoColumns": [
 			      { "bSortable": false },
-			      null, null,null,null, 
+			      null, null,null,null,null, 
 				  { "bSortable": false }
 				] } );
 			

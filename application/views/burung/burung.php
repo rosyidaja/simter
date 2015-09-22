@@ -63,7 +63,7 @@
 												</td>
 												<td class="td-actions">
 												<div class="hidden-phone visible-desktop action-buttons">
-													<a class="green editan" href="#" id="<?php echo $row->id_burung; ?>" role="button" data-toggle="modal">
+													<a class="green" href="burung/get?id=<?php echo $row->id_burung; ?>" role="button" data-toggle="modal">
 														<i class="icon-pencil bigger-130"></i>
 													</a>
 
@@ -169,11 +169,11 @@
 				 {
 				 $.ajax({
 				 type: "POST",
-				 url : "<?php echo site_url('indukan/delete')?>",
+				 url : "<?php echo site_url('burung/delete')?>",
 				 data: info,
 				 success: function(){
 				 	$(this).parents(".record").animate({ opacity: "hide" }, "slow");
-					window.location = '<?php echo site_url("indukan"); ?>';
+					window.location = '<?php echo site_url("burung"); ?>';
 				 }
 				 });				 
 				 }
@@ -207,13 +207,6 @@
 					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
 					return 'left';
 				}
-				$('#modal-form').on('show', function () {
-					$(this).find('.chzn-container').each(function(){
-						$(this).find('a:first-child').css('width' , '150px');
-						$(this).find('.chzn-drop').css('width' , '160px');
-						$(this).find('.chzn-search input').css('width' , '150px');
-					});
-				})
 			})
 		</script>
 	</body>

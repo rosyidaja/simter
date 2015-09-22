@@ -16,12 +16,12 @@ class Indukan extends CI_Controller{
 	function delete(){
 		$id=$this->input->post('id');
 		$data = array(
-			"id_anakan" => $id
+			"id_indukan" => $id
 			);
-		$this->m_anakan->delete($data);
+		$this->m_indukan->delete($data);
 		
 	}
-	function tambahData(){
+	function saveData(){
 		/* $data['nama_kandang'] = $this->input->post('nama_kandang');
 		$data['kode_warna'] = $this->input->post('kode_kandang');
 		$data['status'] = $this->input->post('status');
@@ -31,34 +31,37 @@ class Indukan extends CI_Controller{
 		$data['ring_betina'] = $this->input->post('betina');
 		$data['id_kandang'] = $this->input->post('kandang');
 		$data['status'] = $this->input->post('status');
-		$data['created_by'] = 'Admin';
-		$this->m_indukan->tambahData($data);
-		redirect(site_url('indukan'));
+		$user = $this->session->userdata('username');
+		$date =  date('Y-m-d H:i:s');
+		$id   = @$this->input->post('id_indukan');
+		$result = $this->m_indukan->saveData($data, $user, $date, $id);
+		
+		if($result == 1){
+			echo "<script>alert('Berhasil Input');</script>";
+			redirect(site_url('indukan'));
+		}else{
+			echo "<script>alert('Gagal Input');</script>";
+			redirect(site_url('indukan/inputan'));
+		}
 	}
 
 	function inputan(){
 		$data['kandang'] = $this->m_indukan->select_listKandang();
-		$data['jantan'] = $this->m_indukan->select_listanakanjantan();
-		$data['betina'] = $this->m_indukan->select_listanakanbetina();
+		$data['anakan_jantan'] = $this->m_indukan->select_listanakanjantan();
+		$data['anakan_betina'] = $this->m_indukan->select_listanakanbetina();
+		$data['burung_jantan'] = $this->m_indukan->select_listburungjantan();
+		$data['burung_betina'] = $this->m_indukan->select_listburungbetina();
 		$this->load->view('indukan/inputindukan',$data);
 	}
     function get(){
-    	$data['kandang'] = $this->m_anakan->select_listKandang();
+    	$data['anakan_jantan'] = $this->m_indukan->select_listanakanjantan();
+		$data['anakan_betina'] = $this->m_indukan->select_listanakanbetina();
+		$data['burung_jantan'] = $this->m_indukan->select_listburungjantan();
+		$data['burung_betina'] = $this->m_indukan->select_listburungbetina();
+    	$data['kandang'] = $this->m_indukan->select_listKandang();
     	$id = $this->input->get('id');
-        $data['anakan'] = $this->m_anakan->get($id);
-		$result = $this->load->view("anakan/editanakan",$data);
+        $data['indukan'] = $this->m_indukan->get($id);
+		$result = $this->load->view("indukan/editindukan",$data);
 		echo $result;
-    }
-    function edit(){
-    $id_anakan = $this->input->post('id_anakan');
-     	$data['nomor_ring'] = $this->input->post('nomor_ring');
-		$data['kode_ring'] = $this->input->post('kode_ring');
-		$data['id_indukan'] = $this->input->post('indukan');
-		$data['id_kandang'] = $this->input->post('kandang');
-		$date = $this->input->post('date');
-		$data['status'] = $this->input->post('status');
-        $data['update_by'] = 'Admin';
-        $this->m_anakan->edit($data,$id_anakan);
-        redirect(site_url('anakan'));
     }
 }
