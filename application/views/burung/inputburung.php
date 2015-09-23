@@ -160,7 +160,7 @@
 							data:$("#form-tambah-burung").serialize(),
 							success:function(){
 							alert('Berhasil input');
-							window.location = '<?php echo site_url("burung"); ?>';
+							//window.location = '<?php echo site_url("burung"); ?>';
 							},error:function(){
 								alert('Gagal Menambahkan Data');
 							}

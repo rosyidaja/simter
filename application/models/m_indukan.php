@@ -4,7 +4,10 @@ Class M_indukan extends CI_Model{
 		parent::__construt();
 	}
 	function select_list(){
-		$sql = "SELECT * FROM m_indukan";
+		$sql = "SELECT a.*,
+		nama_kandang 
+		 FROM m_indukan a
+		 LEFT JOIN m_kandang b ON a.id_kandang = b.id_kandang";
 		$rootquery = $this->db->query($sql);
 		return $rootquery->result();
 	}

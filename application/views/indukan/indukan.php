@@ -62,7 +62,7 @@
 											<tr class="record">
 												<td style="display:none;"><?php echo $i; ?></td>
 												<td>
-													<?php echo $row->id_kandang; ?>
+													<?php echo $row->nama_kandang; ?>
 												</td>
 												<td>
 													<?php echo $row->ring_jantan; ?>

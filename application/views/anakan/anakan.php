@@ -74,9 +74,16 @@
 													<?php echo $row->kode_ring; ?>
 												</td>
 												<td>
-													<?php echo $row->id_indukan; ?>
+													<span  data-rel="popover" data-trigger="hover" data-placement="left" 
+													data-content="<?php echo $row->ring_jantan; ?>" title="Prah Indukan Jantan">Jantan</span> X 
+													<span  data-rel="popover" data-trigger="hover" data-placement="left" 
+													data-content="<?php echo $row->ring_betina; ?>" title="Prah Indukan Betina">Betina</span>
 												</td>
 												<td>
+													<span  data-rel="popover" data-trigger="hover" data-placement="left" 
+													data-content="<?php echo $row->prah_jantan; ?>" title="Prah Indukan Jantan">Prah Jantan</span> X 
+													<span  data-rel="popover" data-trigger="hover" data-placement="left" 
+													data-content="<?php echo $row->prah_betina; ?>" title="Prah Indukan Betina">Prah Betina</span>
 												</td>
 												<td>
 													<?php if($row->status == 'k'){
@@ -178,7 +185,7 @@
 
 		<script type="text/javascript">
 		$(document).ready(function() {
-
+			$('[data-rel=popover]').popover({container:'body'});
 			$(".delbutton").click(function(){
  
 				 //Save the link in a variable called element
