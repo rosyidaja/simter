@@ -173,6 +173,7 @@
 		<script src="<?php echo base_url();?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
 		<script src="<?php echo base_url();?>assets/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="<?php echo base_url();?>assets/js/chosen.jquery.min.js"></script>
+		<script src="<?php echo base_url();?>assets/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="<?php echo base_url();?>assets/js/bootstrap-tag.min.js"></script>
 
 		<!--ace scripts-->
@@ -216,9 +217,14 @@
 				}
 			  });
 			}
-			function tambah(){
-				
-			}
+			(function(){
+				$('.date-picker').datepicker().next().on(ace.click_event, function(){
+					$(this).prev().focus();
+				});
+				$('#id-date-range-picker-1').daterangepicker().prev().on(ace.click_event, function(){
+					$(this).next().focus();
+				});	
+			});
 		</script>
 
 	</body>

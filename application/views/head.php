@@ -29,7 +29,7 @@
         <link rel="stylesheet" href="<?php echo base_url();?>assets/css/colorpicker.css" />
         <!--fonts-->
 
-        
+
 
         <!--ace styles-->
 
@@ -54,45 +54,6 @@
                             D'Blue Farm
                         </small>
                     </a><!--/.brand-->
-
-                    <ul class="nav ace-nav pull-right">
-                        <li class="light-blue">
-                            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                <img class="nav-user-photo" src="<?php echo base_url();?>assets/avatars/user.jpg" alt="Jason's Photo" />
-                                <span class="user-info">
-                                    <small>Welcome,</small>
-                                    Jason
-                                </span>
-
-                                <i class="icon-caret-down"></i>
-                            </a>
-
-                            <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-cog"></i>
-                                        Settings
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-user"></i>
-                                        Profile
-                                    </a>
-                                </li>
-
-                                <li class="divider"></li>
-
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-off"></i>
-                                        Logout
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul><!--/.ace-nav-->
                 </div><!--/.container-fluid-->
             </div><!--/.navbar-inner-->
         </div>
@@ -111,29 +72,28 @@
                     </li>
                     <li>
                         <a href="#" class="dropdown-toggle">
-                            <i class="icon-desktop"></i>
-                            <span class="menu-text"> SETTING </span>
+                           <i class="icon-cog"></i>
+                            <span class="menu-text"> PENGATURAN </span>
 
                             <b class="arrow icon-angle-down"></b>
                         </a>
 
                         <ul class="submenu">
                             <li>
-                                <a href="elements.html">
+                                <a href="<?php echo site_url('setting'); ?>">
                                     <i class="icon-double-angle-right"></i>
-                                    Profil
+                                    Manajemen Pengguna
+                                    </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo site_url('setting/header'); ?>">
+                                    <i class="icon-double-angle-right"></i>
+                                   Header Laporan
                                 </a>
                             </li>
 
                             <li>
-                                <a href="buttons.html">
-                                    <i class="icon-double-angle-right"></i>
-                                    Ganti Password
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="<?php echo site_url('login/logout'); ?>">
+                                <a href="treeview.html">
                                     <i class="icon-double-angle-right"></i>
                                     Logout
                                 </a>
@@ -201,7 +161,7 @@
                             </li>
 
                             <li>
-                                <a href="<?php echo site_url('c_parent'); ?>">
+                                <a href="<?php echo site_url('indukan/export_print'); ?>">
                                     <i class="icon-double-angle-right"></i>
                                     Materi Indukan
                                 </a>

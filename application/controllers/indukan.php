@@ -22,11 +22,6 @@ class Indukan extends CI_Controller{
 		
 	}
 	function saveData(){
-		/* $data['nama_kandang'] = $this->input->post('nama_kandang');
-		$data['kode_warna'] = $this->input->post('kode_kandang');
-		$data['status'] = $this->input->post('status');
-		$data['create_by'] = 'Admin';
-		$this->m_anakan->tambahData($data); */
 		$data['ring_jantan'] = $this->input->post('jantan');
 		$data['ring_betina'] = $this->input->post('betina');
 		$data['id_kandang'] = $this->input->post('kandang');
@@ -63,5 +58,27 @@ class Indukan extends CI_Controller{
         $data['indukan'] = $this->m_indukan->get($id);
 		$result = $this->load->view("indukan/editindukan",$data);
 		echo $result;
+    }
+    function export_print(){
+    	$this->load->view("indukan/printIndukan");
+    }
+    function cetak(){
+    	$periode = $this->input->post('period');
+    	$start = date('Y-m-d', strtotime($this->input->post('start')));
+    	$end = date('Y-m-d', strtotime($this->input->post('end')));
+    	$bln = $this->input->post('bln');
+    	$thn = $this->input->post('thn');
+    	@$outputType = $this->input->post('btn');
+
+    	
+    	$data["data_print"] = $this->m_indukan->cetak($start, $end, $periode, $bln, $thn);
+    	$print_view=$this->load->view("indukan/p_m_indukan.php",$data,TRUE);
+		if($outputType == 'EXCEL'){
+			$print_file=fopen("print/m_indukan_printlist.xls","w+");
+		}else{
+			$print_file=fopen("print/m_indukan_printlist.html","w+");
+		}
+		fwrite($print_file, $print_view);
+		echo "1";
     }
 }

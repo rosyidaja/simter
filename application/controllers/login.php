@@ -45,5 +45,32 @@ class Login extends CI_Controller{
 		$this->session->unset_userdata($array_items);
 		redirect('login','refresh');
 	}
-	
+
+	function saveData(){
+		$data['username'] = $this->input->post('username');
+		$data['password'] = md5($this->input->post('password'));
+		$data['nama_lengkap'] = $this->input->post('nama_lengkap');
+		$data['email'] = $this->input->post('email');
+		$data['alamat'] = $this->input->post('alamat');
+		$data['level'] = $this->input->post('level');
+		$id = @$this->input->post('user_id');
+		$user = $this->session->userdata('username');
+		$date = date('Y-m-d H:i:s');
+
+		$this->m_login->saveData($data,$user,$date,$id);
+	}
+
+	function delete(){
+		$id=$this->input->post('id');
+		$data = array(
+			"user_id" => $id
+			);
+		$this->m_login->delete($data);
+	}
+
+	function get(){
+		$id = $this->input->get('id');
+		$data['user'] = $this->m_login->select_id($id);
+		$this->load->view("dashboard/editUser",$data);
+	}
 }

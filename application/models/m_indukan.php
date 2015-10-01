@@ -130,5 +130,36 @@ Class M_indukan extends CI_Model{
 			$this->db->update('m_indukan',$data);
 	
 	}
+	function cetak($start, $end, $periode, $bln, $thn){
+		if($periode == "bln"){
+			$sql = "SELECT
+			m_indukan.*,
+			nama_kandang
+		FROM
+			m_indukan LEFT JOIN m_kandang ON (m_indukan.id_kandang = m_kandang.id_kandang)
+		WHERE
+			EXTRACT (YEAR FROM m_indukan.created_date) = '$thn'
+		AND EXTRACT (MONTH FROM m_indukan.created_date) = '$bln' ";
+				}else if($periode == 'thn'){
+					$sql = "SELECT
+			m_indukan.*,
+		nama_kandang
+		FROM
+			m_indukan LEFT JOIN m_kandang ON (m_indukan.id_kandang = m_kandang.id_kandang)
+		WHERE
+			to_char(m_indukan.created_date, 'yyyy-mm-dd') >= '$start'
+		AND to_char(m_indukan.created_date, 'yyyy-mm-dd') <= '$end' ";
+		}else{
+			$sql = "SELECT
+			m_indukan.*,
+		nama_kandang
+		FROM
+			m_indukan LEFT JOIN m_kandang ON (m_indukan.id_kandang = m_kandang.id_kandang)
+		";
+		}
+		$sql .= " ORDER BY created_date ASC ";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }
 ?>
