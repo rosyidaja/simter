@@ -45,12 +45,6 @@
 									</div>
 								</div>
 								<div class="row-fluid">
-									<label for="form-field-select-1">Kode Ring</label>
-									<div class="controls">
-										<input type="text" name="kode_ring" id="kode_ring" value="<?php echo $anakan->kode_ring; ?>" placeholder="Kode Kandang" maxlength="50" required/>
-									</div>
-								</div>
-								<div class="row-fluid">
 														<label for="form-field-select-1">Indukan</label>
 														<select class="chzn-select1" name="indukan" id="indukan" data-placeholder="Pilih Indukan">
 															<option value="0" />
@@ -114,12 +108,12 @@
 										<?php } ?>
 												</div>
 								<div class="row-fluid">
-														<label for="form-field-select-3">Keterangan</label>
-														<select class="chzn-select3" name="status" id="status" data-placeholder="Pilih Keterangan">
-															<option value="" />
-															<option value="k" />Kosong
-															<option value="t" />Tersedia
-														</select>
+														<div class="row-fluid">
+														<label for="form-field-9">Keterangan</label>
+														<textarea class="span12 limited" name="keterangan" id="form-field-9" data-maxlength="50"><?php 
+														echo $anakan->keterangan;
+														?></textarea>
+								</div>
 								</div>
 								<div>
 									&nbsp;
@@ -187,6 +181,7 @@
 		<script src="<?php echo base_url();?>assets/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="<?php echo base_url();?>assets/js/chosen.jquery.min.js"></script>
 		<script src="<?php echo base_url();?>assets/js/bootstrap-tag.min.js"></script>
+		<script src="<?php echo base_url();?>assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
 
 		<!--ace scripts-->
 
@@ -219,9 +214,18 @@
 							}
 				});
 			}
-			function tambah(){
+			$(function(){
 				
-			}
+				
+				$('textarea[class*=limited]').each(function() {
+					var limit = parseInt($(this).attr('data-maxlength')) || 100;
+					$(this).inputlimiter({
+						"limit": limit,
+						remText: '%n character%s remaining...',
+						limitText: 'max allowed : %n.'
+					});
+				});
+			});
 		</script>
 
 	</body>

@@ -16,16 +16,6 @@
 				</div>
 
 				<div class="page-content">
-					<div class="page-header position-relative">
-						<h1>
-							Form Elements
-							<small>
-								<i class="icon-double-angle-right"></i>
-								Common form elements and layouts
-							</small>
-						</h1>
-					</div><!--/.page-header-->
-
 					<div class="row-fluid">
 	<div class="span3">
 		<div class="widget-box">
@@ -81,12 +71,8 @@
 									&nbsp;
 								</div>
 							<div class="row-fluid">
-														<label for="form-field-select-4">Keterangan</label>
-														<select class="chzn-select3" name="status" id="form-field-select-3" data-placeholder="Pilih Keterangan">
-															<option value="" />
-															<option value="k" />Kosong
-															<option value="t" />Tersedia
-														</select>
+														<label for="form-field-9">Keterangan</label>
+														<textarea class="span12 limited" name="keterangan" id="form-field-9" data-maxlength="50"></textarea>
 								</div>
 								<div>
 									&nbsp;
@@ -149,6 +135,7 @@
 		<script src="<?php echo base_url();?>assets/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="<?php echo base_url();?>assets/js/chosen.jquery.min.js"></script>
 		<script src="<?php echo base_url();?>assets/js/bootstrap-tag.min.js"></script>
+		<script src="<?php echo base_url();?>assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
 
 		<!--ace scripts-->
 
@@ -164,6 +151,14 @@
 				$(".chzn-select2").chosen();
 				$(".chzn-select3").chosen(); 
 				
+				$('textarea[class*=limited]').each(function() {
+					var limit = parseInt($(this).attr('data-maxlength')) || 100;
+					$(this).inputlimiter({
+						"limit": limit,
+						remText: '%n character%s remaining...',
+						limitText: 'max allowed : %n.'
+					});
+				});
 				
 			});
 		</script>

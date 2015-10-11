@@ -1,4 +1,4 @@
-<?php if(@$type!=="excel") { ?>
+<?php if(@$type!=="EXCEL") { ?>
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -65,6 +65,13 @@
 			</tr>
 	</thead>
 	<tbody>
+	<?php if(count($data_print) == 0){ ?>
+		<tr>
+			<td colspan="3">
+			Data Kosong
+			</td>
+		</tr>
+<?php	}else{ ?>
 		<?php foreach($data_print as $print) { ?>
 		<tr>
 				<td rowspan="2" align="center" style="font-size:24px;">
@@ -85,7 +92,8 @@
 					<strong><?php if($print->prah_betina != ''){echo $print->prah_betina;}else{  ?>&nbsp; <?php } ?> </strong>
 				</td>
 			</tr>
-		<?php } ?>
+		<?php } 
+			} ?>
 	</tbody>
 </body>
 </html>

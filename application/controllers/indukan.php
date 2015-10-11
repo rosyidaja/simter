@@ -25,7 +25,7 @@ class Indukan extends CI_Controller{
 		$data['ring_jantan'] = $this->input->post('jantan');
 		$data['ring_betina'] = $this->input->post('betina');
 		$data['id_kandang'] = $this->input->post('kandang');
-		$data['status'] = $this->input->post('status');
+		$data['keterangan'] = $this->input->post('keterangan');
 		$user = $this->session->userdata('username');
 		$date =  date('Y-m-d H:i:s');
 		$id   = @$this->input->post('id_indukan');
@@ -68,7 +68,7 @@ class Indukan extends CI_Controller{
     	$end = date('Y-m-d', strtotime($this->input->post('end')));
     	$bln = $this->input->post('bln');
     	$thn = $this->input->post('thn');
-    	@$outputType = $this->input->post('btn');
+    	@$outputType = $this->input->post('outputType');
 
     	
     	$data["data_print"] = $this->m_indukan->cetak($start, $end, $periode, $bln, $thn);

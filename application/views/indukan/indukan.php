@@ -77,11 +77,7 @@
 													data-content="<?php echo $row->prah_betina; ?>" title="Prah Indukan Betina">Prah Betina</span>
 												</td>
 												<td>
-													<?php if($row->status == 'k'){
-														echo "Kosong";
-													}else{
-														echo "Terpakai";
-													}  ?> 
+													<?php echo $row->keterangan; ?> 
 												</td>
 												<td class="td-actions">
 												<div class="hidden-phone visible-desktop action-buttons">

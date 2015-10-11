@@ -93,7 +93,7 @@
                             </li>
 
                             <li>
-                                <a href="treeview.html">
+                                <a href="<?php echo site_url('login/logout'); ?>">
                                     <i class="icon-double-angle-right"></i>
                                     Logout
                                 </a>
@@ -109,18 +109,19 @@
                         </a>
 
                         <ul class="submenu">
+						  <li>
+                                <a href="<?php echo site_url('kandang');?>">
+                                    <i class="icon-double-angle-right"></i>
+                                    Kandang
+                                </a>
+                            </li>
                             <li>
                                 <a href="<?php echo site_url('burung');?>">
                                     <i class="icon-double-angle-right"></i>
                                     Data Burung
                                 </a>
                             </li>
-                            <li>
-                                <a href="<?php echo site_url('kandang');?>">
-                                    <i class="icon-double-angle-right"></i>
-                                    Kandang
-                                </a>
-                            </li>
+                          
 
                             <li>
                                 <a href="<?php echo site_url('anakan');?>">
@@ -146,13 +147,6 @@
                         </a>
 
                         <ul class="submenu">
-                            <li>
-                                <a href="elements.html">
-                                    <i class="icon-double-angle-right"></i>
-                                    Kandang
-                                </a>
-                            </li>
-
                             <li>
                                 <a href="<?php echo site_url('anakan/export_print'); ?>">
                                     <i class="icon-double-angle-right"></i>

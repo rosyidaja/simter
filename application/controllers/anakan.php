@@ -28,11 +28,10 @@ class Anakan extends CI_Controller{
 	}
 	function saveData(){
 		$data['id_indukan'] = $this->input->post('indukan');
-		$data['nomor_ring'] = $this->input->post('nomor_ring');
 		$data['kode_ring'] = $this->input->post('kode_ring');
 		$data['id_kandang'] = $this->input->post('kandang');
 		$data['jenis_kelamin'] = $this->input->post('jk');
-		$data['status'] = $this->input->post('status');
+		$data['keterangan'] = $this->input->post('keterangan');
 		$data['tanggal_lahir'] = date('Y-m-d', strtotime($this->input->post('date')));
 		$id = @$this->input->post('id_anakan');
 		$user = $this->session->userdata('username');
@@ -64,15 +63,15 @@ class Anakan extends CI_Controller{
     	$end = date('Y-m-d', strtotime($this->input->post('end')));
     	$bln = $this->input->post('bln');
     	$thn = $this->input->post('thn');
-    	@$outputType = $this->input->post('btn');
+    	@$outputType = $this->input->post('outputType');
 
     	
     	$data["data_print"] = $this->m_anakan->cetak($start, $end, $periode, $bln, $thn);
-    	$print_view=$this->load->view("indukan/p_m_indukan.php",$data,TRUE);
+    	$print_view=$this->load->view("anakan/p_m_anakan.php",$data,TRUE);
 		if($outputType == 'EXCEL'){
-			$print_file=fopen("print/m_indukan_printlist.xls","w+");
+			$print_file=fopen("print/m_anakan_printlist.xls","w+");
 		}else{
-			$print_file=fopen("print/m_indukan_printlist.html","w+");
+			$print_file=fopen("print/m_anakan_printlist.html","w+");
 		}
 		fwrite($print_file, $print_view);
 		echo "1";

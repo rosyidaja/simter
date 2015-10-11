@@ -68,10 +68,14 @@
 													<?php echo $row->tanggal_lahir; ?>
 												</td>
 												<td>
-													<?php echo $row->nomor_ring; ?>
+													<?php echo $row->nomor_ring; ?> 
 												</td>
 												<td>
-													<?php echo $row->kode_ring; ?>
+													<?php if(empty($row->kode_warna) and empty($row->nama_kandang) ){ ?>
+														Kosong
+													<?php  }else{ ?>
+													<?php echo $row->kode_warna; ?> / <?php echo $row->nama_kandang; ?>
+													<?php } ?>
 												</td>
 												<td>
 													<span  data-rel="popover" data-trigger="hover" data-placement="left" 
@@ -86,11 +90,7 @@
 													data-content="<?php echo $row->prah_betina; ?>" title="Prah Indukan Betina">Prah Betina</span>
 												</td>
 												<td>
-													<?php if($row->status == 'k'){
-														echo "Kosong";
-													}else{
-														echo "Terpakai";
-													}  ?> 
+													<?php echo $row->keterangan; ?>
 												</td>
 												<td class="td-actions">
 												<div class="hidden-phone visible-desktop action-buttons">

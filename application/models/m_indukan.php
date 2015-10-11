@@ -141,7 +141,7 @@ Class M_indukan extends CI_Model{
 		WHERE
 			EXTRACT (YEAR FROM m_indukan.created_date) = '$thn'
 		AND EXTRACT (MONTH FROM m_indukan.created_date) = '$bln' ";
-				}else if($periode == 'thn'){
+				}else if($periode == 'tgl'){
 					$sql = "SELECT
 			m_indukan.*,
 		nama_kandang

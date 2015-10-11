@@ -5,13 +5,16 @@ Class M_anakan extends CI_Model{
 	}
 	function select_list(){
 		$sql = "SELECT a.*,
+		kode_warna,
+		nama_kandang,
 		ring_jantan,
 		ring_betina,
 		prah_jantan,
 		prah_betina
 		 FROM m_anakan a
 		 LEFT JOIN m_indukan b ON a.id_indukan = b.id_indukan
-		  order by kode_ring asc";
+		 LEFT JOIN m_kandang c ON a.id_kandang = c.id_kandang
+		  order by created_date asc";
 		$rootquery = $this->db->query($sql);
 		return $rootquery->result();
 	}
@@ -78,7 +81,7 @@ Class M_anakan extends CI_Model{
 WHERE
 			EXTRACT (YEAR FROM a.created_date) = '$thn'
 		AND EXTRACT (MONTH FROM a.created_date) = '$bln' ";
-				}else if($periode == 'thn'){
+				}else if($periode == 'tgl'){
 					$sql = "SELECT a.*,
 		ring_jantan,
 		ring_betina,

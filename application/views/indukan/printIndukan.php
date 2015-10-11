@@ -32,25 +32,7 @@
 									<span class="lbl">ALL</span>
 								</label>
 								
-								<div class="row-fluid">
-											
-											<label for="id-date-range-picker-1">
-												<input type="radio" value="tgl" name="period">
-												<span class="lbl">Tanggal : </span>
-											</label>
-										</div>
-
-										<div class="control-group">
-												<input class="span5 date-picker" id="id-date-picker-1" value="<?php echo date('d-m-Y'); ?>" name="start" type="text" data-date-format="dd-mm-yyyy" />
-												<span class="add-on">
-													<i class="icon-calendar"></i>
-												</span>
-												&nbsp; s / d &nbsp;
-												<input class="span5 date-picker" id="id-date-picker-1" value="<?php echo date('d-m-Y'); ?>" name="end" type="text" data-date-format="dd-mm-yyyy" />
-												<span class="add-on">
-													<i class="icon-calendar"></i>
-												</span>
-								</div>
+								
 								<div class="control-group">
 													<label >
 													<input type="radio" value="bln" name="period">
@@ -85,7 +67,25 @@
 														<option value="2020" />2020
 													</select>
 												</div>
-										
+										<div class="row-fluid">
+											
+											<label for="id-date-range-picker-1">
+												<input type="radio" value="tgl" name="period">
+												<span class="lbl">Tanggal : </span>
+											</label>
+										</div>
+
+										<div class="control-group">
+												<input class="span5 date-picker" id="id-date-picker-1" value="<?php echo date('d-m-Y'); ?>" name="start" type="text" data-date-format="dd-mm-yyyy" />
+												<span class="add-on">
+													<i class="icon-calendar"></i>
+												</span>
+												&nbsp; s / d &nbsp;
+												<input class="span5 date-picker" id="id-date-picker-1" value="<?php echo date('d-m-Y'); ?>" name="end" type="text" data-date-format="dd-mm-yyyy" />
+												<span class="add-on">
+													<i class="icon-calendar"></i>
+												</span>
+								</div>
 							<div class="control-grup">
 
 										<button class="btn btn-success" name="btn" value="PRINT" id="btn1" type="button">
@@ -94,7 +94,7 @@
 										</button>
 								&nbsp; &nbsp; &nbsp;
 								<button class="btn btn-primary" type="button" value="EXCEL" id="btn2" >
-									<i class="fa fa-camera-retro bigger-110"></i>
+									<i><img src="<?php echo base_url(); ?>assets/img/page_excel.png"/></i>
 									EXCEL
 								</button>
 							</div>
@@ -143,10 +143,12 @@
 		<script type="text/javascript">
 		$(document).ready(function(){
 			$('#btn1').click(function() {
+				var form = $("#form-tambah-user").serialize();
+				var outputType = 'PRINT';
 				$.ajax({
 							type:'POST',
 						url: '<?php echo site_url("indukan/cetak"); ?>',
-						data:$("#form-tambah-user").serialize(),
+						data:{form,outputType},
 						success:function(response){
 								if(response == '1'){
 									window.open('<?php echo base_url(); ?>'+'print/m_indukan_printlist.html','m_indukanlist','height=600,width=800,resizable=1,scrollbars=1, menubar=0');
@@ -160,10 +162,12 @@
 			  return (false);
 			});
 			$('#btn2').click(function() {
+				var form = $("#form-tambah-user").serialize();
+				var outputType = 'EXCEL';
 				$.ajax({
 							type:'POST',
 						url: '<?php echo site_url("indukan/cetak"); ?>',
-						data:$("#form-tambah-user").serialize(),
+						data:{form,outputType},
 						success:function(response){
 								if(response == '1'){
 									window.location=('<?php echo base_url(); ?>'+'print/m_indukan_printlist.xls');
