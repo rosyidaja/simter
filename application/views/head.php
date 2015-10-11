@@ -154,7 +154,7 @@
                             </li>
 
                             <li>
-                                <a href="buttons.html">
+                                <a href="<?php echo site_url('anakan/export_print'); ?>">
                                     <i class="icon-double-angle-right"></i>
                                     Anakan
                                 </a>

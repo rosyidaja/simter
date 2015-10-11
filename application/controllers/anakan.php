@@ -53,5 +53,29 @@ class Anakan extends CI_Controller{
         $data['anakan'] = $this->m_anakan->get($id);
 		$this->load->view("anakan/editanakan",$data);
     }
+
+    function export_print(){
+    	$this->load->view("anakan/printAnakan");
+    }
+
+    function cetak(){
+    	$periode = $this->input->post('period');
+    	$start = date('Y-m-d', strtotime($this->input->post('start')));
+    	$end = date('Y-m-d', strtotime($this->input->post('end')));
+    	$bln = $this->input->post('bln');
+    	$thn = $this->input->post('thn');
+    	@$outputType = $this->input->post('btn');
+
+    	
+    	$data["data_print"] = $this->m_anakan->cetak($start, $end, $periode, $bln, $thn);
+    	$print_view=$this->load->view("indukan/p_m_indukan.php",$data,TRUE);
+		if($outputType == 'EXCEL'){
+			$print_file=fopen("print/m_indukan_printlist.xls","w+");
+		}else{
+			$print_file=fopen("print/m_indukan_printlist.html","w+");
+		}
+		fwrite($print_file, $print_view);
+		echo "1";
+    }
     
 }

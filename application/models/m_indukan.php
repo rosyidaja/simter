@@ -59,6 +59,7 @@ Class M_indukan extends CI_Model{
 			$this->db->where('id_indukan', $id_indukan);
 			$this->db->update('m_indukan', $data);
 			$this->processPrah($id_indukan);
+			return '1';
 		}
 		if($this->db->affected_rows()){
 			return '1';

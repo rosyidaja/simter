@@ -63,5 +63,51 @@ Class M_anakan extends CI_Model{
         $this->db->where('id_anakan',$id_anakan);
         $this->db->update('m_anakan',$data);
     }
+    function cetak($start, $end, $periode, $bln, $thn){
+		if($periode == "bln"){
+			$sql = "SELECT a.*,
+		ring_jantan,
+		ring_betina,
+		prah_jantan,
+		prah_betina,
+		nama_kandang,
+		kode_warna
+		 FROM m_anakan a
+		 LEFT JOIN m_indukan b ON a.id_indukan = b.id_indukan
+		 LEFT JOIN m_kandang c ON a.id_kandang = c.id_kandang
+WHERE
+			EXTRACT (YEAR FROM a.created_date) = '$thn'
+		AND EXTRACT (MONTH FROM a.created_date) = '$bln' ";
+				}else if($periode == 'thn'){
+					$sql = "SELECT a.*,
+		ring_jantan,
+		ring_betina,
+		prah_jantan,
+		prah_betina,
+		nama_kandang,
+		kode_warna
+		 FROM m_anakan a
+		 LEFT JOIN m_indukan b ON a.id_indukan = b.id_indukan
+		 LEFT JOIN m_kandang c ON a.id_kandang = c.id_kandang
+WHERE
+			to_char(a.created_date, 'yyyy-mm-dd') >= '2015-06-01'
+		AND to_char(a.created_date, 'yyyy-mm-dd') <= '2015-06-30' ";
+		}else{
+			$sql = "SELECT a.*,
+		ring_jantan,
+		ring_betina,
+		prah_jantan,
+		prah_betina,
+		nama_kandang,
+		kode_warna
+		 FROM m_anakan a
+		 LEFT JOIN m_indukan b ON a.id_indukan = b.id_indukan
+		 LEFT JOIN m_kandang c ON a.id_kandang = c.id_kandang
+		";
+		}
+		$sql .= " ORDER BY created_date ASC ";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }
 ?>
