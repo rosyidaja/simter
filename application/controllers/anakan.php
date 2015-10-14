@@ -28,7 +28,7 @@ class Anakan extends CI_Controller{
 	}
 	function saveData(){
 		$data['id_indukan'] = $this->input->post('indukan');
-		$data['kode_ring'] = $this->input->post('kode_ring');
+		$data['nomor_ring'] = $this->input->post('nomor_ring');
 		$data['id_kandang'] = $this->input->post('kandang');
 		$data['jenis_kelamin'] = $this->input->post('jk');
 		$data['keterangan'] = $this->input->post('keterangan');
